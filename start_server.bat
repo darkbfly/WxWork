@@ -1,70 +1,57 @@
 @echo off
 chcp 65001 >nul
 echo ========================================
-echo ÆóÒµÎ¢ĞÅ»Øµ÷ÑéÖ¤½Ó¿ÚÆô¶¯½Å±¾
+echo ä¼ä¸šå¾®ä¿¡å›è°ƒéªŒè¯æ¥å£å¯åŠ¨è„šæœ¬
 echo ========================================
 echo.
 
-REM ÅäÖÃÆóÒµÎ¢ĞÅ²ÎÊı£¨Çë¸ù¾İÊµ¼ÊÇé¿öĞŞ¸Ä£©
-set WXWORK_TOKEN=your_token_here
-set WXWORK_ENCODING_AES_KEY=your_encoding_aes_key_here
-set WXWORK_CORP_ID=your_corp_id_here
+REM é…ç½®ä¼ä¸šå¾®ä¿¡å‚æ•°ï¼ˆè¯·æ ¹æ®å®é™…æƒ…å†µä¿®æ”¹ï¼‰
+set WXWORK_TOKEN=R9IWIpiQRVu69BYc2f
+set WXWORK_ENCODING_AES_KEY=tEbtRwiBp1UAIXZXrAIhvTBVS5IUku4ICc22dL1roLx
+set WXWORK_CORP_ID=wwd7a3b0c978473076
 
-REM ¼ì²é²ÎÊıÊÇ·ñÒÑÅäÖÃ
+REM æ£€æŸ¥å‚æ•°æ˜¯å¦å·²é…ç½®
 if "%WXWORK_TOKEN%"=="your_token_here" (
-    echo [¾¯¸æ] ÇëĞŞ¸Ä´Ë½Å±¾ÖĞµÄ WXWORK_TOKEN ÅäÖÃ
+    echo [è­¦å‘Š] è¯·ä¿®æ”¹æ­¤è„šæœ¬ä¸­çš„ WXWORK_TOKEN é…ç½®
 )
 if "%WXWORK_ENCODING_AES_KEY%"=="your_encoding_aes_key_here" (
-    echo [¾¯¸æ] ÇëĞŞ¸Ä´Ë½Å±¾ÖĞµÄ WXWORK_ENCODING_AES_KEY ÅäÖÃ
+    echo [è­¦å‘Š] è¯·ä¿®æ”¹æ­¤è„šæœ¬ä¸­çš„ WXWORK_ENCODING_AES_KEY é…ç½®
 )
 if "%WXWORK_CORP_ID%"=="your_corp_id_here" (
-    echo [¾¯¸æ] ÇëĞŞ¸Ä´Ë½Å±¾ÖĞµÄ WXWORK_CORP_ID ÅäÖÃ
+    echo [è­¦å‘Š] è¯·ä¿®æ”¹æ­¤è„šæœ¬ä¸­çš„ WXWORK_CORP_ID é…ç½®
 )
 echo.
 
-REM ÏÔÊ¾ÅäÖÃĞÅÏ¢
-echo µ±Ç°ÅäÖÃ:
+REM æ˜¾ç¤ºé…ç½®ä¿¡æ¯
+echo å½“å‰é…ç½®:
 echo   Token: %WXWORK_TOKEN%
 echo   EncodingAESKey: %WXWORK_ENCODING_AES_KEY:~0,20%...
 echo   CorpID: %WXWORK_CORP_ID%
-echo   ¶Ë¿Ú: 7777
+echo   ç«¯å£: 7777
 echo.
 
-REM ÇĞ»»µ½½Å±¾ËùÔÚÄ¿Â¼
+REM åˆ‡æ¢åˆ°è„šæœ¬æ‰€åœ¨ç›®å½•
 cd /d "%~dp0"
 
-REM ¼ì²é Python ÊÇ·ñ°²×°
+REM æ£€æŸ¥ Python æ˜¯å¦å®‰è£…
 python --version >nul 2>&1
 if errorlevel 1 (
-    echo [´íÎó] Î´ÕÒµ½ Python£¬ÇëÏÈ°²×° Python
+    echo [é”™è¯¯] æœªæ‰¾åˆ° Pythonï¼Œè¯·å…ˆå®‰è£… Python
     pause
     exit /b 1
 )
 
-REM ¼ì²éÒÀÀµÊÇ·ñ°²×°
-echo ¼ì²éÒÀÀµ°ü...
-python -c "import fastapi" >nul 2>&1
-if errorlevel 1 (
-    echo [ÌáÊ¾] ÕıÔÚ°²×°ÒÀÀµ°ü...
-    pip install -r requirements.txt
-    if errorlevel 1 (
-        echo [´íÎó] ÒÀÀµ°ü°²×°Ê§°Ü
-        pause
-        exit /b 1
-    )
-)
-
 echo.
 echo ========================================
-echo Æô¶¯·şÎñÖĞ...
-echo ·şÎñµØÖ·: http://localhost:6666
-echo ÑéÖ¤½Ó¿Ú: http://localhost:6666/
-echo ½¡¿µ¼ì²é: http://localhost:6666/health
+echo å¯åŠ¨æœåŠ¡ä¸­...
+echo æœåŠ¡åœ°å€: http://localhost:6666
+echo éªŒè¯æ¥å£: http://localhost:6666/
+echo å¥åº·æ£€æŸ¥: http://localhost:6666/health
 echo ========================================
-echo °´ Ctrl+C Í£Ö¹·şÎñ
+echo æŒ‰ Ctrl+C åœæ­¢æœåŠ¡
 echo.
 
-REM Æô¶¯ FastAPI ·şÎñ£¬¶Ë¿Ú 6666
+REM å¯åŠ¨ FastAPI æœåŠ¡ï¼Œç«¯å£ 6666
 python -m uvicorn fastapi_callback:app --host 0.0.0.0 --port 6666
 
 pause
